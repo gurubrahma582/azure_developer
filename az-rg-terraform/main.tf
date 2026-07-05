@@ -22,6 +22,8 @@ provider "azurerm" {
   features {}
 }
 
+data "azurerm_client_config" "current" {}
+
 variable "environment" {
   description = "Deployment environment name (for example: dev, qa, prod)."
   type        = string
@@ -36,15 +38,37 @@ variable "environment" {
 variable "location" {
   description = "Azure region for the resource group."
   type        = string
-  default     = "East US"
+  default     = "eastus"
+}
+
+variable "resource_group_name" {
+  description = "Explicit Azure resource group name to create or manage."
+  type        = string
+  default     = "dev-rg-warehouse-azure"
 }
 
 locals {
   environment_name    = lower(var.environment)
-  resource_group_name = "${local.environment_name}-rg-warehouse-azure"
+  resolved_rg_name    = var.resource_group_name != "" ? var.resource_group_name : "${local.environment_name}-rg-warehouse-azure"
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = local.resource_group_name
+  name     = local.resolved_rg_name
   location = var.location
+}
+
+output "subscription_id" {
+  value = data.azurerm_client_config.current.subscription_id
+}
+
+output "resource_group_name" {
+  value = azurerm_resource_group.rg.name
+}
+
+output "resource_group_id" {
+  value = azurerm_resource_group.rg.id
+}
+
+output "resource_group_location" {
+  value = azurerm_resource_group.rg.location
 }

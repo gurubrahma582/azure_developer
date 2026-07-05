@@ -158,10 +158,20 @@ terraform plan -var-file="environments/qa.tfvars"
 terraform apply -var-file="environments/qa.tfvars"
 ```
 
-This will create resource groups named:
+This will create or manage resource groups named:
 
 - `dev-rg-warehouse-azure`
 - `qa-rg-warehouse-azure`
+
+The current live dev resource group in your subscription is already:
+
+- `dev-rg-warehouse-azure`
+
+You can also target it explicitly with:
+
+```bash
+terraform apply -var="resource_group_name=dev-rg-warehouse-azure" -var="location=eastus"
+```
 
 ### 7. Inspect Terraform State
 
