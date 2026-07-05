@@ -1,0 +1,126 @@
+# ============================================================================
+# Terraform State Files - CRITICAL: Never commit state files to version control
+# ============================================================================
+# Terraform state files contain sensitive information (resource IDs, passwords, etc.)
+terraform.tfstate
+terraform.tfstate.*
+*.tfstate
+*.tfstate.*.backup
+
+# ============================================================================
+# Terraform Lock Files
+# ============================================================================
+# Lock file records provider versions used in current deployment
+.terraform.lock.hcl
+
+# ============================================================================
+# Terraform Working Directory
+# ============================================================================
+# Contains downloaded providers and modules
+.terraform/
+.terraform/**
+
+# ============================================================================
+# Terraform Override Files
+# ============================================================================
+# Local override files (should not be committed)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ============================================================================
+# Terraform Variable Files
+# ============================================================================
+# Files containing sensitive values, local configs, or secret variables
+*.tfvars
+*.tfvars.json
+terraform.tfvars
+terraform.tfvars.json
+
+# ============================================================================
+# Terraform Crash Logs
+# ============================================================================
+# Generated when Terraform encounters fatal errors
+crash.log
+crash.*.log
+
+# ============================================================================
+# IDE and Editor Files
+# ============================================================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# JetBrains (IntelliJ, PyCharm, etc.)
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+.swp
+.swo
+*~
+.vim
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================================================
+# Operating System Files
+# ============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Linux
+.directory
+
+# ============================================================================
+# Temporary and Build Files
+# ============================================================================
+*.tmp
+*.temp
+*.bak
+*.swp
+*.log
+
+# ============================================================================
+# Environment Variables
+# ============================================================================
+# Local environment configuration files (should use .env.example as template)
+.env
+.env.local
+.env.*.local
+
+# ============================================================================
+# Mac-specific
+# ============================================================================
+.AppleDouble
+.LSOverride
+._*
+
+# ============================================================================
+# Backup Files
+# ============================================================================
+*.backup
+*.bkp
+*.old
+
+# ============================================================================
+# Compiled Files (if using Terraform modules with scripts)
+# ============================================================================
+*.o
+*.obj
+*.exe
