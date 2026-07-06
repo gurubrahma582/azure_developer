@@ -1,27 +1,36 @@
 param location string = 'eastus'
 param appName string = 'dev-warehouseapp-service'
+param resourceGroupName string = resourceGroup().name
+param planName string = '${appName}-plan'
+param webAppName string = appName
 param skuName string = 'B1'
 param skuCapacity int = 1
 
 var linuxFxVersion = 'NODE|22-lts'
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
-  name: '${appName}-plan'
+  name: planName
   location: location
   sku: {
     name: skuName
     capacity: skuCapacity
   }
   kind: 'linux'
+  tags: {
+    resourceGroupName: resourceGroupName
+  }
   properties: {
     reserved: true
   }
 }
 
 resource webApp 'Microsoft.Web/sites@2023-12-01' = {
-  name: appName
+  name: webAppName
   location: location
   kind: 'app,linux'
+  tags: {
+    resourceGroupName: resourceGroupName
+  }
   identity: {
     type: 'SystemAssigned'
   }
@@ -49,5 +58,3 @@ resource webApp 'Microsoft.Web/sites@2023-12-01' = {
   }
 }
 
-output webAppName string = webApp.name
-output webAppUrl string = 'https://${webApp.properties.defaultHostName}'

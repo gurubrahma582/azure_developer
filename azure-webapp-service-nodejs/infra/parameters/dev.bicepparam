@@ -1,6 +1,9 @@
 using '../main.bicep'
 
 param location = 'eastus'
-param appName = 'dev-warehouseapp-service'
+param appName = 'qa-warehouseapp-service'
+param resourceGroupName = 'qa-warehouseapp-rg'
+param planName = 'qawarehouseappplan'
+param webAppName = 'qa-warehouseapp-service'
 param skuName = 'B1'
 param skuCapacity = 1
